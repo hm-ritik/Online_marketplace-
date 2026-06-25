@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import  AsyncSession
 from sqlalchemy import select
-from app.schemas.user_schema import UserCreate , UserUpdate
+from app.schemas.user_schema import UserCreate 
 from app.models.user_model import User
 
 
@@ -18,10 +18,12 @@ async def get_userbyid(db:AsyncSession , id:int):
     result=await db.execute(select(User).where(User.user_id==id))
     return result.scalar_one_or_none()
 
-async def update_userinfo(db:AsyncSession , user_id:int , post:UserCreate):
+
+
+async def update_userinfo(db: AsyncSession, user: User):
     await db.commit()
-    await db.refresh(post)
-    return post
+    await db.refresh(user)
+    return user
 
   
  

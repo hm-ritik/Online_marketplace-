@@ -24,14 +24,15 @@ async def get_user(db:AsyncSession , mobile_no:str):
         raise HTTPException(status_code=409, detail="Mobile_No already exists")
     return  user
 
-async def update_user(db:AsyncSession , user_id:int, post:UserUpdate):
-    user=await get_userbyid(db,user_id)
+
+async def update_user(db: AsyncSession, user_id: int, post: UserUpdate):
+    user = await get_userbyid(db, user_id)
     if not user:
-        raise HTTPException(status_code=404 , detail="User not Found")
-    user.name=post.name
-    user.mobile_no=post.mobile_no
-    user.email_id=post.email_id
-    return await update_userinfo(db,user)
+        raise HTTPException(status_code=404, detail="User not found")
+    user.name = post.name
+    user.mobile_no = post.mobile_no
+    user.email_id = post.email_id
+    return await update_userinfo(db, user)
 
 
 

@@ -6,6 +6,9 @@ class CreateLocality(BaseModel):
     city:str
     latitude: float = Field(ge=-90, le=90)
     longitude: float = Field(ge=-180, le=180)
+
+    
+
 class ResponseLocality(BaseModel):
     l_id:int
     area_name:str
