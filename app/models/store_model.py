@@ -1,4 +1,4 @@
-from sqlalchemy import Column , String , Integer   , Decimal , ForeignKey , DateTime
+from sqlalchemy import Column , String , Integer   , Numeric , ForeignKey , DateTime
 
 from app.core.database import Base
 from app.models import locality_model

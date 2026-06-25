@@ -6,10 +6,10 @@ load_dotenv()
 
 DATABASE_URL=os.getenv("DATABASE_URL")
 
-engine=create_async_engine(
+engine = create_async_engine(
     DATABASE_URL,
-     echo=True 
-   
+    echo=True,
+    connect_args={"statement_cache_size": 0}  # required for Supabase pgbouncer
 )
 SessionLocal=async_sessionmaker(bind=engine ,  class_=AsyncSession , expire_on_commit=False)
 
