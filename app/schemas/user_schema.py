@@ -25,7 +25,12 @@ class UserResponse(BaseModel):
     mobile_no:str
     email_id: EmailStr 
     role: Literal['owner' , 'user']    
-    model_config = ConfigDict(from_attributes=True)
+   
 
+class UserUpdate(BaseModel):
+    name: str
+    mobile_no: str
+    email_id: EmailStr
+    model_config = ConfigDict(from_attributes=True)
 
 
