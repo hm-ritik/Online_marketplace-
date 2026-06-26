@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import  AsyncSession
 from sqlalchemy import select
-from app.schemas.user_schema import UserCreate 
+from app.schemas.user_schema import UserCreate , UserResponse
 from app.models.user_model import User
 
 
@@ -24,6 +24,11 @@ async def update_userinfo(db: AsyncSession, user: User):
     await db.commit()
     await db.refresh(user)
     return user
+
+"""async def remove_user(db:AsyncSession , post:UserResponse):
+        await db.delete(post)
+        await db.commit()"""
+  
 
   
  

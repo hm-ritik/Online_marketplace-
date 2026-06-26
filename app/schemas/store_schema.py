@@ -9,6 +9,12 @@ class CreateStore(BaseModel):
     owner_id:int
     locality_id:int
 
+class UpdateStore(BaseModel):
+     store_name:str
+     shop_type:Literal['Kirana' , 'Clothes' , 'Medical' , 'Salon']
+     address:str
+     description:str    
+
 class ResponseStore(BaseModel):
     store_id:int
     store_name:str

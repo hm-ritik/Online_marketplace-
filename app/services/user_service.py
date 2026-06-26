@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession 
 from app.schemas.user_schema import UserCreate , UserResponse , UserUpdate
-from app.repository.user_repository import user_registration , get_userby_mobileno ,get_userbyid  , update_userinfo
+from app.repository.user_repository import user_registration , get_userby_mobileno ,get_userbyid  , update_userinfo #, remove_user
 from fastapi import HTTPException
 from app.models.user_model import User
 
@@ -33,6 +33,15 @@ async def update_user(db: AsyncSession, user_id: int, post: UserUpdate):
     user.mobile_no = post.mobile_no
     user.email_id = post.email_id
     return await update_userinfo(db, user)
+
+
+"""async def delete_userinfo(db:AsyncSession , id:int):
+    user= await get_userbyid(db , id)
+    if user is None:
+        raise HTTPException(status_code=404 , detail="user do not exists")
+    return await remove_user(db ,user)"""
+
+
 
 
 
