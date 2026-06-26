@@ -10,6 +10,7 @@ class UserCreate(BaseModel):
     mobile_no:str
     email_id: EmailStr 
     role: Literal["owner", "user"]
+    hashed_password:str=Field(min_length=6 , max_length=15)
     
 
     @field_validator("mobile_no")
@@ -25,6 +26,8 @@ class UserResponse(BaseModel):
     mobile_no:str
     email_id: EmailStr 
     role: Literal['owner' , 'user']    
+
+    
    
 
 class UserUpdate(BaseModel):
@@ -32,5 +35,7 @@ class UserUpdate(BaseModel):
     mobile_no: str
     email_id: EmailStr
     model_config = ConfigDict(from_attributes=True)
+
+
 
 

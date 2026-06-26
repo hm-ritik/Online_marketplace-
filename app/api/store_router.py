@@ -15,7 +15,7 @@ async def make_store(post:CreateStore , db:AsyncSession=Depends(get_db)):
 async def store(id:int , db:AsyncSession=Depends(get_db)):
     return await read_store(db , id)
 
-@router.get("/stores", response_model=ResponseStore)
+@router.get("/stores", response_model=list[ResponseStore])
 async def stores(db:AsyncSession=Depends(get_db)):
     return await read_stores(db)
 

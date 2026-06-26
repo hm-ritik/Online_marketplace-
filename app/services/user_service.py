@@ -3,6 +3,7 @@ from app.schemas.user_schema import UserCreate , UserResponse , UserUpdate
 from app.repository.user_repository import user_registration , get_userby_mobileno ,get_userbyid  , update_userinfo #, remove_user
 from fastapi import HTTPException
 from app.models.user_model import User
+from app.core.security import hashing_password , verifying_password
 
 
 
@@ -10,11 +11,13 @@ async def register_user(db:AsyncSession , post:UserCreate):
     existing_user=await get_userby_mobileno(db , post.mobile_no)
     if existing_user:
         raise HTTPException(status_code=409 , detail="Mobile_No already exists")
+    password=hashing_password(post.hashed_password)
     user=User(
        name=post.name,
        mobile_no=post.mobile_no,
        email_id=post.email_id,
-       role=post.role
+       role=post.role,
+       hashed_password=password
     )
     return await user_registration(db,user)
 
