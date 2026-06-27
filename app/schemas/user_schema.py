@@ -27,7 +27,10 @@ class UserResponse(BaseModel):
     email_id: EmailStr 
     role: Literal['owner' , 'user']    
 
-    
+class Login(BaseModel):
+    identifier:str
+    password:str
+        
    
 
 class UserUpdate(BaseModel):

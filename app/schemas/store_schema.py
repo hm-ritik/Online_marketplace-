@@ -6,7 +6,6 @@ class CreateStore(BaseModel):
     shop_type: Literal['Kirana' , 'Clothes' , 'Medical' , 'Salon']
     address: str = Field(min_length=5, max_length=200)
     description: str = Field(min_length=10, max_length=500)
-    owner_id:int
     locality_id:int
 
 class UpdateStore(BaseModel):

@@ -25,5 +25,9 @@ async def update_store(db:AsyncSession , post:UpdateStore):
     await db.refresh(post)
     return post 
 
+async def remove_store(db:AsyncSession, store:Store):
+    await db.delete(store)
+    await db.commit()
+    return {"message":"Store deleted successfully."}
 
 

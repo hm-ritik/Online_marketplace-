@@ -9,11 +9,11 @@ async def get_by_name(db:AsyncSession , area_name:str):
     result= await db.execute(select(Locality).where(area_name==Locality.area_name))
     return result.scalar_one_or_none()
 
-async def register_locality(db:AsyncSession , post:CreateLocality):
-    db.add(post)
+async def create_locality(db:AsyncSession, locality:Locality):
+    db.add(locality)
     await db.commit()
-    await db.refresh(post)
-    return post
+    await db.refresh(locality)
+    return locality
 
 
 async def getall_area(db:AsyncSession):
@@ -30,5 +30,7 @@ async def get_area(db:AsyncSession , id:int):
     result=await db.execute (select(Locality).where(id==Locality.l_id))
     return result.scalar_one_or_none()
 
-
-
+async def remove_locality(db:AsyncSession, locality:Locality):
+    await db.delete(locality)
+    await db.commit()
+    return {"message":"Locality deleted successfully."}
